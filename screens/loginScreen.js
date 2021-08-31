@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, Button, TextInput, Alert } from 'react-native';
+import { View, Text, Button, TextInput, Alert, Image } from 'react-native';
 import auth from '@react-native-firebase/auth';
-
+import styles from '../styles/styles';
 
 
 function LoginApp() {
@@ -80,38 +80,40 @@ export const loginScreen=({navigation}) => {
       };
 
 return(
- <View>
-<Text>login screen</Text>
 
-<Button
-title="registration"
-onPress={()=>navigation.navigate('Register')}/>
-
-
-    
-<LoginApp></LoginApp>
-
-<TextInput
-onChangeText={(text)=>setEmail(text)}
-value={email}
-placeholder='E-mail'
-/>
-
-<TextInput
-onChangeText={(text)=>setPassword(text)}
-value={password}
-placeholder='Password'
-/>
-
-<Button
-title="LOG IN"
-onPress={()=>logToApp()}/>
-
-<Button
-title="logoff"
-onPress={()=>logoff()}/>
+<View style={styles.container}>
+  <View style={styles.topContainer}></View>
+  
+  <View style={styles.downContainer}>
+    <Image
+    style={styles.logoStyle}
+    source={require('../images/doorbell.png')}/>
 
 
+    <TextInput
+    style={styles.textInputStyle}
+    onChangeText={(text)=>setEmail(text)}
+    value={email}
+    placeholder='E-mail'
+    />
+
+    <TextInput
+    style={styles.textInputStyle}
+    onChangeText={(text)=>setPassword(text)}
+    value={password}
+    placeholder='Password'
+    />
+
+    <Button
+    title="LOGIN"
+    onPress={()=>logToApp()}/>
+
+    <Button
+    title="logoff"
+    onPress={()=>logoff()}/>
+  </View>
+  <View style={styles.circle}/>
+  <View style={styles.circle2}/>
  </View>
 
 )
