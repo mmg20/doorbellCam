@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TextInput, Alert, Image } from 'react-native';
+import { View, Text, Button, TextInput, Alert, Image, TouchableOpacity } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import storage from '@react-native-firebase/storage';
+import { ImageList } from './imagelist';
+import styles from '../styles/styles';
 
 
 function LogApp() {
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  
 
   // Handle user state changes
   function onAuthStateChanged(user) {
@@ -41,10 +43,17 @@ function LogApp() {
 
 
 
+
+
+
+
 export const Home = () => {
 
-  const reference = storage().ref('0109202114:47:27.jpg').getDownloadURL();
-
+  
+  
+  const [serialNumber, setSerialNumber]= useState();
+  const [isSerialNumberProvided, setIsSerialNumberProvided]= useState(false);
+  
 
 
   return (
@@ -60,6 +69,24 @@ export const Home = () => {
 
       <LogApp />
 
+    {!isSerialNumberProvided && (
+      <>
+      <TextInput
+      style={styles.textInputStyle}
+      onChangeText={(text)=>setSerialNumber(text)}
+      value={serialNumber}
+      placeholder='serial number'
+      />
+      <TouchableOpacity style={styles.buttonStyle}
+      title="confirm"
+      onPress={()=>setIsSerialNumberProvided(true)}>
+        <Text style={styles.buttonText}>confirm</Text>
+      </TouchableOpacity>
+      </>
+    )}
+    
+      {isSerialNumberProvided && <ImageList serialNumber={serialNumber}/>}
+    
     </View>
 
   )
