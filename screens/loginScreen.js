@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, Button, TextInput, Alert, Image } from 'react-native';
+import { View, Text, Button, TextInput, Alert, Image, TouchableOpacity } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import styles from '../styles/styles';
 
@@ -37,7 +37,7 @@ function LoginApp() {
     );
   };
 
-
+ 
   
 
   const logoff = () => {
@@ -51,7 +51,12 @@ export const loginScreen=({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const footerLink = ()=>{
+      navigation.navigate("Register")
+  };
+
     const logToApp = () => {
+
         auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
@@ -74,7 +79,7 @@ export const loginScreen=({navigation}) => {
             Alert.alert('User not found');
             console.log('User not found');
           }
-      
+          
           console.error(error);
         });
       };
@@ -82,7 +87,9 @@ export const loginScreen=({navigation}) => {
 return(
 
 <View style={styles.container}>
-  <View style={styles.topContainer}></View>
+  <View style={styles.topContainer}>
+    <Text style={styles.fontHead}>Login</Text>
+  </View>
   
   <View style={styles.downContainer}>
     <Image
@@ -102,11 +109,19 @@ return(
     onChangeText={(text)=>setPassword(text)}
     value={password}
     placeholder='Password'
+    secureTextEntry
+    autoCapitalize='none'
     />
 
-    <Button
+
+    <TouchableOpacity style={styles.buttonStyle}
     title="LOGIN"
-    onPress={()=>logToApp()}/>
+    onPress={()=>logToApp()}>
+      <Text style={styles.buttonText}>Log in</Text>
+    </TouchableOpacity>
+        
+        <Text style={styles.footerText}>Don't have an account? <Text style={styles.footerLink} onPress={footerLink}>Sign up</Text></Text>
+       
 
     <Button
     title="logoff"

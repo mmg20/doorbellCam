@@ -53,7 +53,39 @@ textInputStyle:{
     backgroundColor:'#FFFFFF',
     borderRadius:8,
     marginTop: 10,
-
-}
+},
+fontHead:{
+    textAlign:'right',
+    marginTop: 40,
+    marginRight:50,
+    fontFamily:'Roboto',
+    fontSize:25,   
+},
+buttonStyle:{
+    backgroundColor:'#81e1ee',
+    borderRadius: 8,
+    width:344,
+    height:41,
+    marginLeft:30,
+    opacity:0.7,
+    marginTop: 10,
+    justifyContent:'center',
+},
+buttonText:{
+    textAlign:'center',
+    fontFamily:'Roboto',
+    fontSize:18,
+    
+},
+footerText:{
+    textAlign:'center',
+    padding:5,
+    
+},
+footerLink:{
+    //textAlign:'center',
+    color:'#81e1ee',
+    fontWeight:'bold',
+},
 
 })
