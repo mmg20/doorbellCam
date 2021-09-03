@@ -4,47 +4,7 @@ import auth from '@react-native-firebase/auth';
 import styles from '../styles/styles';
 
 
-function LoginApp() {
-    // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
-  
-    // Handle user state changes
-    function onAuthStateChanged(user) {
-      setUser(user);
-      if (initializing) setInitializing(false);
-    }
-  
-    useEffect(() => {
-      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-      return subscriber; // unsubscribe on unmount
-    }, []);
-  
-    if (initializing) return null;
-  
-    if (!user) {
-      return (
-        <View>
-          <Text>Login</Text>
-        </View>
-      );
-    }
-  
-    return (
-      <View>
-        <Text>Welcome {user.email}</Text>
-      </View>
-    );
-  };
 
- 
-  
-
-  const logoff = () => {
-    auth()
-    .signOut()
-    .then(() => console.log('User signed out!'));
-};
 
 export const loginScreen=({navigation}) => {
 
@@ -63,7 +23,7 @@ export const loginScreen=({navigation}) => {
           console.log('Logged In!');
         })
         .then(()=>{
-            navigation.navigate('Home')
+            navigation.navigate('HomeStack')
         })
         .catch(error => {
           if (error.code === 'auth/wrong-password') {
@@ -123,9 +83,7 @@ return(
         <Text style={styles.footerText}>Don't have an account? <Text style={styles.footerLink} onPress={footerLink}>Sign up</Text></Text>
        
 
-    <Button
-    title="logoff"
-    onPress={()=>logoff()}/>
+    
   </View>
   <View style={styles.circle}/>
   <View style={styles.circle2}/>

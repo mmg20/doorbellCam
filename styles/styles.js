@@ -9,9 +9,24 @@ topContainer:{
     flex:1,
     backgroundColor:'white',
 },
+topHomeContainer:{
+    flex:1,
+    backgroundColor:'white',
+    //position:'relative',
+},
 downContainer:{
     flex:5,
     backgroundColor:'#dfdfdf',
+},
+downHomeContainer:{
+    flex:2.4,
+    backgroundColor:'#dfdfdf',
+},
+homeImage:{
+    flex:1,
+    justifyContent: "center",
+    width: '100%',
+    height: '200%',
 },
 logoStyle:{
     position:'relative',

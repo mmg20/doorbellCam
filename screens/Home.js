@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, TextInput, Alert, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TextInput, Alert, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { ImageList } from './imagelist';
 import styles from '../styles/styles';
+
 
 
 function LogApp() {
@@ -44,9 +45,6 @@ function LogApp() {
 
 
 
-
-
-
 export const Home = () => {
 
   
@@ -56,21 +54,20 @@ export const Home = () => {
   
 
 
+
   return (
 
-    <View>
-      
-
-
-      <Text>
-
-        Witaj przyjacielu xD
-      </Text>
-
+    <View style={styles.container}>
+      <View style={styles.topHomeContainer}>
+        <ImageBackground style={styles.homeImage} source={require('../images/doors.png')}></ImageBackground>
+      </View>
+      <View style={styles.downHomeContainer}>
+        
       <LogApp />
 
     {!isSerialNumberProvided && (
       <>
+      <Text>Please provide serial number</Text>
       <TextInput
       style={styles.textInputStyle}
       onChangeText={(text)=>setSerialNumber(text)}
@@ -86,8 +83,13 @@ export const Home = () => {
     )}
     
       {isSerialNumberProvided && <ImageList serialNumber={serialNumber}/>}
-    
+      </View>
+    <View style={styles.circle}/>
+    <View style={styles.circle2}/>
+     
+
     </View>
+
 
   )
 
