@@ -10,7 +10,7 @@ export const loginScreen=({navigation}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const dateToFormat = '1976-04-19T12:59-0500';
     const footerLink = ()=>{
       navigation.navigate("Register")
   };
@@ -82,7 +82,8 @@ return(
         
         <Text style={styles.footerText}>Don't have an account? <Text style={styles.footerLink} onPress={footerLink}>Sign up</Text></Text>
        
-
+        
+       <Text> date: {moment().format('MMMM Do YYYY, h:mm:ss a')}</Text>
     
   </View>
   <View style={styles.circle}/>
